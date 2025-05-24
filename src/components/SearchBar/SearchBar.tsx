@@ -1,15 +1,15 @@
-import styles from './SerchBar.module.css';
+import styles from './SearchBar.module.css';
 import toast, {Toaster} from 'react-hot-toast';
 
 interface SerchBarProps {
     onSubmit: (search: string) => void;
 }
 
-function SerchBar({onSubmit}: SerchBarProps) {
+function SearchBar({onSubmit}: SerchBarProps) {
     
     const handleSubmit = (formData: FormData) => {
-        const search = formData.get('query') as string;
-        if (search === "") {
+        const search = formData.get('query');
+        if (search === null || search === "") {
             toast.error("Please enter your search query.");
              return;            
         }
@@ -24,7 +24,7 @@ function SerchBar({onSubmit}: SerchBarProps) {
                     <a className={styles.link} href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">Powered by TMDB</a>
                     
                     <form action={handleSubmit} className={styles.form}>
-                        
+
                         <input className={styles.input} type="text" name="query" autoComplete="off" placeholder="Search movies..." autoFocus/>
                         
                         <button className={styles.button} type="submit">Search</button>
@@ -35,4 +35,4 @@ function SerchBar({onSubmit}: SerchBarProps) {
     );
 }
 
-export default SerchBar;
+export default SearchBar;
