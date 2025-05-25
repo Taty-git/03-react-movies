@@ -20,8 +20,6 @@ export const fetchMovies = async (query: string): Promise<Movie[]> => {
       Authorization: `Bearer ${TOKEN}`,
     },
   };
-
-
     try {
        const response = await axios.get<MovieSearchResponse>(url, config);
 
